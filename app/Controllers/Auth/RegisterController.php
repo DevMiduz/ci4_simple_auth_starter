@@ -29,7 +29,17 @@ class RegisterController extends BaseController {
 			return redirect()->back()->withInput();
 		}
 
-		$model->save($this->validator->getValidated());
+		$password = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+
+		if ($model->save([
+			'username' => $this->request->getVar('username'),
+			'password' => $password,
+			'password_confirm' => $password,
+		]) === false) {
+			$this->errors = $model->errors();
+			return print_r($model->errors(), true);
+			return redirect()->back()->withInput();
+		}
 
 		return redirect('auth/login');
 
