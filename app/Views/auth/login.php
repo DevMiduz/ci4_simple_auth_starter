@@ -8,11 +8,11 @@
 
     <?=form_label('Username:', 'username')?>
     <?=validation_show_error('username')?>
-    <?=form_input('username', old('username'))?>
+    <?=form_input('username', is_null(old('username')) ? "" : old('username'))?>
 
     <?=form_label('Password:', 'password')?>
     <?=validation_show_error('password')?>
-    <?=form_input('password')?>
+    <?=form_password('password')?>
 
     <hr/>
 

@@ -29,7 +29,7 @@ class RegisterController extends BaseController {
 			return redirect()->back()->withInput();
 		}
 
-		$model->save($this->validator->getValidated();
+		$model->save($this->validator->getValidated());
 
 		return redirect('auth/login');
 
