@@ -6,3 +6,15 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+
+$routes->group('auth', static function ($routes) {
+	$routes->get('login', 'Auth\LoginController::index');
+	$routes->post('login', 'Auth\LoginController::login');
+
+	$routes->get('register', 'Auth\RegisterController::index');
+	$routes->post('register', 'Auth\RegisterController::register');
+
+	$routes->get('account', 'Auth\AccountController::index');
+	$routes->post('account', 'Auth\AccountController::update');
+	$routes->post('account', 'Auth\AccountController::logout');
+});

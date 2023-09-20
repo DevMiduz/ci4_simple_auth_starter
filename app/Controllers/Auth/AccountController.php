@@ -15,6 +15,14 @@ use App\Controllers\BaseController;
  **/
 class AccountController extends BaseController {
 	public function index() {
+		return view('auth/account');
+	}
+
+	public function update() {
+		//
+	}
+
+	public function logout() {
 		//
 	}
 }
