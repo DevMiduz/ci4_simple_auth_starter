@@ -5,15 +5,6 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-/**
- *   Handles functions for Accounts which:
- *   - already exist.
- *   - are logged in.
- *
- *   View Account Details (profile).
- *   Change Password.
- *   Logout.
- **/
 class AccountController extends BaseController {
 	public function index() {
 		$session = session();
@@ -27,11 +18,6 @@ class AccountController extends BaseController {
 	}
 
 	public function update() {
-
-		//Check the old_password matches the current password.
-		//Check the new password matches the requirements.
-		//Check the confirm password matches the new password.
-		//Update the session.
 
 		$data = $this->request->getPost(['old_password', 'new_password', 'confirm_password']);
 
@@ -48,7 +34,7 @@ class AccountController extends BaseController {
 		$user = $model->where('username', $session->username)->first();
 
 		if (!$user || !password_verify($data['old_password'], $user['password'])) {
-			session()->setFlashdata('error', 'Old Password Incorrect.');
+			session()->setFlashdata('update_form_error', 'Old Password Incorrect.');
 			return redirect()->back()->withInput();
 		}
 
@@ -58,20 +44,46 @@ class AccountController extends BaseController {
 			'password' => $password,
 			'password_confirm' => $password,
 		]) === false) {
-			session()->setFlashdata('error', implode('<br/>', $model->errors()));
+			session()->setFlashdata('update_form_error', implode('<br/>', $model->errors()));
 			return redirect()->back()->withInput();
 		}
 
-		session()->setFlashdata("message", "User successfully updated.");
+		session()->setFlashdata("update_form_message", "User successfully updated.");
 
 		return redirect('auth/account');
 	}
 
 	public function delete() {
-		//
+		$data = $this->request->getPost(['confirm_username', 'password']);
+
+		$session = session();
+
+		if ($data['confirm_username'] !== $session->username) {
+			session()->setFlashdata('delete_form_error', 'Username Incorrect.');
+			return redirect()->back()->withInput();
+		}
+		
+		$model = new UserModel();
+		$user = $model->where('username', $session->username)->first();
+		
+		if (!$user || !password_verify($data['password'], $user['password'])) {
+			session()->setFlashdata('delete_form_error', 'Password Incorrect.');
+			return redirect()->back()->withInput();
+		}
+
+		if ($model->delete($user['id']) === false) {
+			session()->setFlashdata('delete_form_error', implode('<br/>', $model->errors()));
+			return redirect()->back()->withInput();
+		}
+
+		session()->setFlashdata("message", "User successfully deleted.");
+
+		return redirect('auth/login');
 	}
 
 	public function logout() {
-		//
+		end_session();
+		session()->setFlashdata("message", "User successfully logged out.");
+		return redirect('auth/login');
 	}
 }

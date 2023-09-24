@@ -11,6 +11,7 @@
     <?=form_password('password')?>
     <?=validation_show_error('password')?>
 
+    <br/>
     <?=form_submit('login_submit', 'Login');?>
 
     <?=form_close()?>

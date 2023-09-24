@@ -26,8 +26,8 @@
 
     <?=form_close()?>
 
-    <?= session()->getFlashdata('message') ?>
-    <?= session()->getFlashdata('error') ?>
+    <?= session()->getFlashdata('update_form_message') ?>
+    <?= session()->getFlashdata('update_form_error') ?>
 
     </br>
 
@@ -40,6 +40,22 @@
 
     <h4>Delete your account:</h4>
     <?=form_open('auth/account/delete', ['method' => 'post'])?>
-        <?=form_submit('delete_submit', 'Delete');?>
+
+    <?=form_label('Confirm your username:', 'confirm_username')?>
+    <?=form_input('confirm_username')?>
+    <?=validation_show_error('confirm_username')?>
+
+    <?=form_label('Password:', 'password')?>
+    <?=form_password('password')?>
+    <?=validation_show_error('password')?>
+    
+    <br/>
+
+    <?=form_submit('delete_submit', 'Delete');?>
+    
+
     <?=form_close()?>
+
+    <?= session()->getFlashdata('_delete_form_message') ?>
+    <?= session()->getFlashdata('delete_form_error') ?>
 <?=$this->endSection()?>

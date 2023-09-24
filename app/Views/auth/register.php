@@ -15,6 +15,7 @@
     <?=form_password('password_confirm')?>
     <?=validation_show_error('password_confirm')?>
 
+    <br/>
     <?=form_submit('register_submit', 'Register');?>
 
     <?=form_close()?>
