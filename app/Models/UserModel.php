@@ -23,8 +23,8 @@ class UserModel extends Model {
 
 	// Validation
 	protected $validationRules = [
-		'username' => 'required|max_length[255]',
-		'password' => 'required|max_length[255]|min_length[8]',
+		'username' => 'required|max_length[255]|alpha_numeric|is_unique[users.username,id,{id}]',
+		'password' => 'required|max_length[255]|min_length[8]|alpha_numeric_punct',
 		'password_confirm' => 'required|max_length[255]|matches[password]',
 	];
 

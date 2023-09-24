@@ -10,20 +10,34 @@ use App\Models\UserModel;
  **/
 class LoginController extends BaseController {
 	public function index() {
-		return view('auth/login');
+		$data = [
+			'page_title' => 'Login'
+		];
+
+		return view('auth/login', $data);
 	}
 
 	public function login() {
-		$model = new UserModel();
 
 		$data = $this->request->getPost(['username', 'password']);
 
-		if (!$this->validate($model->validationRules)) {
+		if (!$this->validate([
+			'username' => 'required|max_length[255]',
+			'password' => 'required|max_length[255]|min_length[8]',
+		])) {
 			return redirect()->back()->withInput();
 		}
 
-		//$model->save($this->validator->getValidated();
+		$model = new UserModel();
+		$user = $model->where('username', $data['username'])->first();
 
+		if (!$user || !password_verify($data['password'], $user['password'])) {
+			session()->setFlashdata('error', 'Username or Password Incorrect.');
+			end_session();
+			return redirect()->back()->withInput();
+		}
+
+		begin_session($user);
 		return redirect('auth/login');
 	}
 }

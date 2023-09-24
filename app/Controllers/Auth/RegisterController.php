@@ -10,7 +10,11 @@ use App\Models\UserModel;
  **/
 class RegisterController extends BaseController {
 	public function index() {
-		return view('auth/register');
+		$data = [
+			'page_title' => 'Register'
+		];
+
+		return view('auth/register', $data);
 	}
 
 	public function register() {
@@ -25,22 +29,26 @@ class RegisterController extends BaseController {
 
 		$data = $this->request->getPost(['username', 'password', 'password_confirm']);
 
-		if (!$this->validate($model->validationRules)) {
+		if (!$this->validate([
+			'username' => 'required|max_length[255]|alpha_numeric',
+			'password' => 'required|max_length[255]|min_length[8]|alpha_numeric_punct',
+			'password_confirm' => 'required|max_length[255]|matches[password]',
+		])) {
 			return redirect()->back()->withInput();
 		}
 
-		$password = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+		$password = password_hash($data['password'], PASSWORD_DEFAULT);
 
 		if ($model->save([
-			'username' => $this->request->getVar('username'),
+			'username' => $data['username'],
 			'password' => $password,
 			'password_confirm' => $password,
 		]) === false) {
-			$this->errors = $model->errors();
-			return print_r($model->errors(), true);
+			session()->setFlashdata('error', implode('<br/>', $model->errors()));
 			return redirect()->back()->withInput();
 		}
 
+		session()->setFlashdata("message", "User successfully registered.");
 		return redirect('auth/login');
 
 	}

@@ -15,7 +15,11 @@ use App\Controllers\BaseController;
  **/
 class AccountController extends BaseController {
 	public function index() {
-		return view('auth/account');
+		$data = [
+			'page_title' => 'Profile'
+		];
+
+		return view('auth/account', $data);
 	}
 
 	public function update() {

@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
 </head>
 <body>
-    <?=$this->renderSection('content')?>
+    <section>
+        <h1><?=$page_title?></h1>
+        <?=$this->renderSection('content')?>
+        <?= session()->getFlashdata('message') ?>
+        <?= session()->getFlashdata('error') ?>
+    </section>
 </body>
 </html>

@@ -16,5 +16,5 @@ $routes->group('auth', static function ($routes) {
 
 	$routes->get('account', 'Auth\AccountController::index');
 	$routes->post('account', 'Auth\AccountController::update');
-	$routes->post('account', 'Auth\AccountController::logout');
+	$routes->post('account/logout', 'Auth\AccountController::logout');
 });

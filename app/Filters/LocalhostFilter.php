@@ -25,7 +25,9 @@ class LocalhostFilter implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
-        //
+        if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
+            return response()->setStatusCode(403)->setBody("Forbidden.");
+        }
     }
 
     /**

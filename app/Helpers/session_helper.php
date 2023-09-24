@@ -4,7 +4,7 @@ function begin_session($data) {
 	$session = session();
 	$authData = [
 		'username' => $data['username'],
-		'is_logged_in' => true,
+		'authenticated' => true,
 	];
 
 	$session->set($authData);
@@ -12,7 +12,7 @@ function begin_session($data) {
 
 function end_session() {
 	$session = session();
-	$authData = ['is_logged_in' => false];
+	$authData = ['authenticated' => false];
 
 	$session->set($authData);
 }

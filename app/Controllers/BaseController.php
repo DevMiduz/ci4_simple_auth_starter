@@ -53,6 +53,6 @@ abstract class BaseController extends Controller {
 
 		// E.g.: $this->session = \Config\Services::session();
 
-		helper(['form', 'html']);
+		helper(['form', 'html', 'session']);
 	}
 }
