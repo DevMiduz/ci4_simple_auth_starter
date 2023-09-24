@@ -16,13 +16,17 @@ use App\Controllers\BaseController;
 class AccountController extends BaseController {
 	public function index() {
 		$data = [
-			'page_title' => 'Profile'
+			'page_title' => 'Profile - ' . session()->username
 		];
 
 		return view('auth/account', $data);
 	}
 
 	public function update() {
+		//
+	}
+
+	public function delete() {
 		//
 	}
 

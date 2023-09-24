@@ -7,11 +7,9 @@
     <?=form_input('username', is_null(old('username')) ? "" : old('username'))?>
     <?=validation_show_error('username')?>
 
-
     <?=form_label('Password:', 'password')?>
     <?=form_password('password')?>
     <?=validation_show_error('password')?>
-
 
     <?=form_label('Confirm Password:', 'password_confirm')?>
     <?=form_password('password_confirm')?>

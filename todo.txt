@@ -1,0 +1,9 @@
+- Add signout to account.
+- Add restriction to login attempts.
+- Log login attempts. (new database table)
+- Log User actions.
+- Log User IP's e.g. for sessions.
+    So if a user accesses a session for a different IP then end the current session.
+- Change Pasword.
+- Delete Account.
+- Update and Save.

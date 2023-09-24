@@ -1,10 +1,6 @@
 <?=$this->extend('layouts/auth')?>
 
 <?=$this->section('content')?>
-    <?php if (session()->get('authenticated')): ?>
-        <p>Logged in.</p>
-    <?php endif?>
-
     <?=form_open('auth/login', ['method' => 'post'])?>
 
     <?=form_label('Username:', 'username')?>

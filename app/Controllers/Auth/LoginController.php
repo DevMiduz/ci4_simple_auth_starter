@@ -35,6 +35,6 @@ class LoginController extends BaseController {
 		}
 
 		begin_session($user);
-		return redirect('auth/login');
+		return redirect('auth/account');
 	}
 }
