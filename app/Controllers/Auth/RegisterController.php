@@ -5,9 +5,6 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-/**
- *   Handles functions for registering accounts.
- **/
 class RegisterController extends BaseController {
 	public function index() {
 		$data = [
@@ -18,12 +15,6 @@ class RegisterController extends BaseController {
 	}
 
 	public function register() {
-
-		/*
-			if ($_SERVER['REMOTE_ADDR'] != '127.0.0.1') {
-				return $this->response->setStatusCode(403)->setBody("Forbidden.");
-			}
-		*/
 
 		$model = new UserModel();
 

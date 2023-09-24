@@ -5,9 +5,6 @@ namespace App\Controllers\Auth;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-/**
- *   Handles functions for login.
- **/
 class LoginController extends BaseController {
 	public function index() {
 		$data = [
