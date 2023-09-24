@@ -12,8 +12,6 @@
     <section>
         <h1><?=$page_title?></h1>
         <?=$this->renderSection('content')?>
-        <?= session()->getFlashdata('message') ?>
-        <?= session()->getFlashdata('error') ?>
     </section>
 </body>
 </html>

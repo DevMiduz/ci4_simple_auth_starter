@@ -19,4 +19,7 @@
 
     <?=form_close()?>
 
+    <?= session()->getFlashdata('message') ?>
+    <?= session()->getFlashdata('error') ?>
+
 <?=$this->endSection()?>

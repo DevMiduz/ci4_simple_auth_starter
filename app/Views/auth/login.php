@@ -14,4 +14,7 @@
     <?=form_submit('login_submit', 'Login');?>
 
     <?=form_close()?>
+
+    <?= session()->getFlashdata('message') ?>
+    <?= session()->getFlashdata('error') ?>
 <?=$this->endSection()?>

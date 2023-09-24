@@ -6,9 +6,7 @@
 
     <?=form_open('auth/account', ['method' => 'post'])?>
 
-    <?=form_label('Username:', 'username')?>
-    <?=form_input('username', is_null(old('username')) ? "" : old('username'))?>
-    <?=validation_show_error('username')?>
+    <p>Username: <?=$username?></p>
 
     <?=form_label('Old Password:', 'old_password')?>
     <?=form_password('old_password')?>
@@ -18,14 +16,18 @@
     <?=form_password('new_password')?>
     <?=validation_show_error('new_password')?>
 
-    <?=form_label('Confirm Password:', 'password_confirm')?>
-    <?=form_password('password_confirm')?>
-    <?=validation_show_error('password_confirm')?>
+    <?=form_label('Confirm Password:', 'confirm_password')?>
+    <?=form_password('confirm_password')?>
+    <?=validation_show_error('confirm_password')?>
 
     </br>
+
     <?=form_submit('update_submit', 'Save');?>
 
     <?=form_close()?>
+
+    <?= session()->getFlashdata('message') ?>
+    <?= session()->getFlashdata('error') ?>
 
     </br>
 
