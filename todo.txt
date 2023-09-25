@@ -35,3 +35,14 @@ MAYBE log level alert for someone has tried logging in unsuccessfully 3 times.
     ];
 
 Use notice log level for auditing.
+
+REMOTE_ADDR 
+REQUEST_URI 
+REQUEST_METHOD 
+PATH_INFO 
+HTTP_USER_AGENT 
+HTTP_ACCEPT 
+HTTP_ACCEPT_LANGUAGE 
+HTTP_ACCEPT_ENCODING 
+HTTP_COOKIE 
+QUERY_STRING
