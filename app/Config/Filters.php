@@ -3,6 +3,7 @@
 namespace Config;
 
 use App\Filters\AuthFilter;
+use App\Filters\RequestLogFilter;
 use App\Filters\LocalhostFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -26,7 +27,8 @@ class Filters extends BaseConfig {
 		'invalidchars' => InvalidChars::class,
 		'secureheaders' => SecureHeaders::class,
 		'auth_filter' => AuthFilter::class,
-		'localhost_filter' => LocalhostFilter::class
+		'localhost_filter' => LocalhostFilter::class,
+		'request_log_filter' => RequestLogFilter::class,
 	];
 
 	/**
@@ -72,6 +74,7 @@ class Filters extends BaseConfig {
 	 */
 	public array $filters = [
 		'auth_filter' => ['before' => ['auth/account', 'auth/account/*']],
-		'localhost_filter' => ['before' => ['auth', 'auth/*']]
+		'localhost_filter' => ['before' => ['auth', 'auth/*']],
+		'request_log_filter' => ['before' => ['auth', 'auth/*']]
 	];
 }

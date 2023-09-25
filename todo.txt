@@ -1,9 +1,37 @@
-- Add signout to account.
 - Add restriction to login attempts.
 - Log login attempts. (new database table)
 - Log User actions.
 - Log User IP's e.g. for sessions.
     So if a user accesses a session for a different IP then end the current session.
-- Change Pasword.
-- Delete Account.
-- Update and Save.
+
+    Log Request Url, 
+
+Could Use the built in codeigniter logging:
+
+https://www.sentinelone.com/blog/getting-started-quickly-with-codeigniter-logging/
+
+// Generates a message like: User 123 logged into the system from 127.0.0.1
+$info = [
+        'id' => $user->id,
+        'ip_address' => $this->request->ip_address()
+];
+
+log_message('info', 'User {id} logged into the system from {ip_address}', $info);
+
+
+MAYBE log level alert for someone has tried logging in unsuccessfully 3 times.
+
+
+- Log User Login (include success true/false and IPs)
+- Add an AUDIT Log level
+- Log user actions to AUDIT Level
+- 
+
+    public $handlers = [
+        // File Handler
+        'CodeIgniter\Log\Handlers\FileHandler' => [
+            'handles' => ['critical', 'alert', 'emergency', 'debug', 'error', 'info', 'notice', 'warning'],
+        ],
+    ];
+
+Use notice log level for auditing.

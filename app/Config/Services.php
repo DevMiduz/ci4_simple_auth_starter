@@ -3,6 +3,7 @@
 namespace Config;
 
 use CodeIgniter\Config\BaseService;
+use App\Libraries\AuditLogger;
 
 /**
  * Services Configuration file.
@@ -19,14 +20,10 @@ use CodeIgniter\Config\BaseService;
  */
 class Services extends BaseService
 {
-    /*
-     * public static function example($getShared = true)
-     * {
-     *     if ($getShared) {
-     *         return static::getSharedInstance('example');
-     *     }
+    /**
+     * The Logger class is a PSR-3 compatible Logging class that supports
+     * multiple handlers that process the actual logging.
      *
-     *     return new \CodeIgniter\Example();
-     * }
+     * @return Logger
      */
 }
