@@ -7,6 +7,11 @@ use App\Models\UserModel;
 
 class LoginController extends BaseController {
 	public function index() {
+
+		if(session()->authenticated) {
+			return redirect('auth/account');
+		}
+
 		$data = [
 			'page_title' => 'Login'
 		];

@@ -7,6 +7,10 @@ use App\Models\UserModel;
 
 class RegisterController extends BaseController {
 	public function index() {
+		if(session()->authenticated) {
+			return redirect('auth/account');
+		}
+		
 		$data = [
 			'page_title' => 'Register'
 		];
